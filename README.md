@@ -1,5 +1,3 @@
-# Journée contrôle optimal et applications FRUNAM (Marseille)
-
 ![titre](https://github.com/control-toolbox/frunam/assets/66357348/a22d1051-7930-4df9-9f89-1adfe20e1c27)
 
 Présentation du projet `ct: control-toolbox`, par Jean-Baptiste Caillau et Olivier Cots
