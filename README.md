@@ -7,7 +7,7 @@ Plan :
 - présentation générale du projet `ct`
   - [site officiel](https://control-toolbox.org)
   - [organisation Github](https://github.com/control-toolbox)
-  - [ct-gallery](https://ct.gitlabpages.inria.fr/gallery/)
+  - [ct-gallery](https://ct.gitlabpages.inria.fr/gallery/notebooks.html)
   - [bocop](https://github.com/control-toolbox/bocop)
   - [nutopy](https://ct.gitlabpages.inria.fr/nutopy/)
 - exemple [basic version abstraite](basic_abstract.jl)
