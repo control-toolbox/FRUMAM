@@ -1,4 +1,5 @@
 using OptimalControl
+using Plots
 
 # Parameters
 t0 = 0

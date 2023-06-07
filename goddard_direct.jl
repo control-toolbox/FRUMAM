@@ -1,12 +1,14 @@
 using OptimalControl
 using MINPACK
+using Plots
 
 # Parameters
 const Cd = 310
 const Tmax = 3.5
 const β = 500
 const b = 2
-const t0 = 0
+
+t0 = 0
 r0 = 1
 v0 = 0
 vmax = 0.1
