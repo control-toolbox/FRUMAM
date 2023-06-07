@@ -1,2 +1,3 @@
 [deps]
+MINPACK = "4854310b-de5a-5eb6-a2a5-c1dee2bd17f9"
 OptimalControl = "5f98b655-cc9a-415a-b60e-744165666948"
