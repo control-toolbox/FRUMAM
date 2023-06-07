@@ -52,7 +52,8 @@ F1(x) = begin
 end
 
 # Direct solve
-direct_sol = solve(ocp, grid_size=50)
+N = 50
+direct_sol = solve(ocp, grid_size=N)
 
 # Plot
 plot(direct_sol, size=(700, 900))

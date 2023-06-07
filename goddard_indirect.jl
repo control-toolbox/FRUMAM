@@ -52,7 +52,8 @@ F1(x) = begin
 end
 
 # Direct solve
-direct_sol = solve(ocp, grid_size=50)
+N = 50
+direct_sol = solve(ocp, grid_size=N)
 
 # Plot
 plt_sol = plot(direct_sol, size=(700, 900))
@@ -83,7 +84,7 @@ shoot!(s, p0, t1, t2, t3, tf) = begin
     x2, p2 = fs(t1, x1, p1, t2)
     x3, p3 = fb(t2, x2, p2, t3)
     xf, pf = f0(t3, x3, p3, tf)
-    s[1] = constraint(ocp, :eq3)(x, -1) - mf # active final mass constraint
+    s[1] = constraint(ocp, :eq3)(xf, -1) - mf # active final mass constraint
     s[2:3] = pf[1:2] - [ 1, 0 ]
     s[4] = H1(x1, p1)
     s[5] = H01(x1, p1)
@@ -101,12 +102,12 @@ H1(t) = H1(x(t), p(t))
 
 u_plot  = plot(t, t -> u(t)[1], label = "u(t)")
 H1_plot = plot(t, H1,           label = "H₁(x(t), p(t))")
-g_plot  = plot(t, g ∘ x,         label = "g(x(t))")
+g_plot  = plot(t, g ∘ x,        label = "g(x(t))")
 display(plot(u_plot, H1_plot, g_plot, layout=(3,1), size=(700,600)))
 
 η = 1e-3
 t13 = t[ abs.(H1.(t)) .≤ η ]
-t23 = t[ 0 .≤ (g∘x).(t) .≤ η ]
+t23 = t[ 0 .≤ (g ∘ x).(t) .≤ η ]
 p0 = p(t0)
 t1 = min(t13...)
 t2 = min(t23...)

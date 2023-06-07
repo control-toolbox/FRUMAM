@@ -12,7 +12,7 @@ B = [ 0
 # Functional model
 ocp = Model()
 
-time!(ocp, [t0, tf])
+time!(ocp, t0, tf)
 state!(ocp, 2)
 control!(ocp, 1)
 
@@ -24,7 +24,8 @@ dynamics!(ocp, (x, u) -> A*x + B*u)
 objective!(ocp, :lagrange, (x, u) -> 0.5u^2)
 
 # Solve
-sol = solve(ocp, grid_size=50)
+N = 50
+sol = solve(ocp, grid_size=N)
 
 # Plot
 plot(sol)

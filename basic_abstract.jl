@@ -8,7 +8,7 @@ tf = 1
 @def ocp begin
 
     t ∈ [ t0, tf ], time
-    x ∈ R^2, state
+    x ∈ R², state
     u ∈ R, control
 
     x(t0) == [ -1, 0 ] 
@@ -26,7 +26,8 @@ B = [ 0
       1 ]
 
 # Solve
-sol = solve(ocp, grid_size=50)
+N = 50
+sol = solve(ocp, grid_size=N)
 
 # Plot
 plot(sol)
