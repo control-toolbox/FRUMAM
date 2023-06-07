@@ -63,9 +63,9 @@ u1 = 1
 
 H0(x, p) = Lift(F0)(x, p)
 H1(x, p) = Lift(F1)(x, p)
-H01  = @Poisson {H0, H1}
-H001 = @Poisson {H0, H01}
-H101 = @Poisson {H1, H01}
+H01  = @Poisson { H0, H1 }
+H001 = @Poisson { H0, H01 }
+H101 = @Poisson { H1, H01 }
 us(x, p) = -H001(x, p) / H101(x, p)
 
 g(x) = vmax - constraint(ocp, :eq2)(x, -1)
@@ -83,7 +83,7 @@ shoot!(s, p0, t1, t2, t3, tf) = begin
     x2, p2 = fs(t1, x1, p1, t2)
     x3, p3 = fb(t2, x2, p2, t3)
     xf, pf = f0(t3, x3, p3, tf)
-    s[1] = xf[3] - mf # final mass constraint active
+    s[1] = constraint(ocp, :eq3)(x, -1) - mf # active final mass constraint
     s[2:3] = pf[1:2] - [ 1, 0 ]
     s[4] = H1(x1, p1)
     s[5] = H01(x1, p1)
