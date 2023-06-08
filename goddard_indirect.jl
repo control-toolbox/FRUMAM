@@ -1,5 +1,6 @@
 using OptimalControl
 using MINPACK
+using Plots
 
 # Parameters
 const Cd = 310
