@@ -58,4 +58,4 @@ N = 50
 direct_sol = solve(ocp, grid_size=N)
 
 # Plot
-plot(direct_sol, size=(700, 900))
+plot(direct_sol, size=(700, 750))

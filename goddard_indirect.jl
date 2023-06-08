@@ -58,14 +58,14 @@ N = 50
 direct_sol = solve(ocp, grid_size=N)
 
 # Plot
-plt_sol = plot(direct_sol, size=(700, 900))
+plt_sol = plot(direct_sol, size=(700, 750))
 
 # Shooting function
 u0 = 0
 u1 = 1
 
-H0(x, p) = Lift(F0)(x, p)
-H1(x, p) = Lift(F1)(x, p)
+H0 = Lift(F0)
+H1 = Lift(F1)
 H01  = @Poisson { H0, H1 }
 H001 = @Poisson { H0, H01 }
 H101 = @Poisson { H1, H01 }
@@ -100,21 +100,22 @@ t = direct_sol.times
 x = direct_sol.state
 u = direct_sol.control
 p = direct_sol.costate
-H1(t) = H1(x(t), p(t))
+φ(t) = H1(x(t), p(t))
 
-u_plot  = plot(t, t -> u(t)[1], label = "u(t)")
-H1_plot = plot(t, H1,           label = "H₁(x(t), p(t))")
-g_plot  = plot(t, g ∘ x,        label = "g(x(t))")
+u_plot  = plot(t, t -> u(t)[1], label = "u(t)");
+H1_plot = plot(t, φ,            label = "H₁(x(t), p(t))");
+g_plot  = plot(t, g ∘ x,        label = "g(x(t))");
 display(plot(u_plot, H1_plot, g_plot, layout=(3,1), size=(700,600)))
 
 η = 1e-3
-t13 = t[ abs.(H1.(t)) .≤ η ]
+t13 = t[ abs.(φ.(t)) .≤ η ]
 t23 = t[ 0 .≤ (g ∘ x).(t) .≤ η ]
 p0 = p(t0)
 t1 = min(t13...)
 t2 = min(t23...)
 t3 = max(t23...)
 tf = t[end]
+
 ξ = [ p0 ; t1 ; t2 ; t3 ; tf ]
 
 println("Initial guess:\n", ξ)
@@ -133,4 +134,4 @@ tf = indirect_sol.x[7]
 
 f = f1 * (t1, fs) * (t2, fb) * (t3, f0)
 flow_sol = f((t0, tf), x0, p0)
-plot!(plt_sol, flow_sol, size=(700, 900))
+plot!(plt_sol, flow_sol, size=(700, 750))
