@@ -5,10 +5,10 @@ Présentation du projet `ct: control-toolbox`, par Jean-Baptiste Caillau et Oliv
 Plan :
 
 - Présentation générale du projet
-  - [bocop v3](https://www.bocop.org)
-  - [hampath](http://www.hampath.org)
-  - [bocop v3](https://github.com/control-toolbox/bocop)
+  - [BOCOP (v2)](https://www.bocop.org)
+  - [HamPath](http://www.hampath.org)
   - [nutopy](https://ct.gitlabpages.inria.fr/nutopy)
+  - [Bocop3](https://github.com/control-toolbox/bocop)
   - [ct-gallery](https://ct.gitlabpages.inria.fr/gallery/notebooks.html)
   - [control-toolbox.org](https://control-toolbox.org)
 - Use case 1a: [basic (functional)](basic_functional.jl)
