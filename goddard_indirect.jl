@@ -40,7 +40,7 @@ x0 = [ r0, v0, m0 ]
  
     r(tf) → max
     
-end
+end;
 
 F0(x) = begin
     r, v, m = x
@@ -58,7 +58,7 @@ N = 50
 direct_sol = solve(ocp, grid_size=N)
 
 # Plot
-plt_sol = plot(direct_sol, size=(700, 750))
+plt_sol = plot(direct_sol, size=(700, 700))
 
 # Shooting function
 u0 = 0
@@ -86,6 +86,7 @@ shoot!(s, p0, t1, t2, t3, tf) = begin
     x2, p2 = fs(t1, x1, p1, t2)
     x3, p3 = fb(t2, x2, p2, t3)
     xf, pf = f0(t3, x3, p3, tf)
+    
     s[1] = constraint(ocp, :eq3)(xf, -1) - mf # active final mass constraint
     s[2:3] = pf[1:2] - [ 1, 0 ]
     s[4] = H1(x1, p1)
@@ -105,7 +106,7 @@ p = direct_sol.costate
 u_plot  = plot(t, t -> u(t)[1], label = "u(t)");
 H1_plot = plot(t, φ,            label = "H₁(x(t), p(t))");
 g_plot  = plot(t, g ∘ x,        label = "g(x(t))");
-display(plot(u_plot, H1_plot, g_plot, layout=(3,1), size=(700,600)))
+display(plot(u_plot, H1_plot, g_plot, layout=(3,1), size=(700,700)))
 
 η = 1e-3
 t13 = t[ abs.(φ.(t)) .≤ η ]
@@ -134,4 +135,4 @@ tf = indirect_sol.x[7]
 
 f = f1 * (t1, fs) * (t2, fb) * (t3, f0)
 flow_sol = f((t0, tf), x0, p0)
-plot!(plt_sol, flow_sol, size=(700, 750))
+plot!(plt_sol, flow_sol, size=(700, 700))

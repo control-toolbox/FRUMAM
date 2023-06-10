@@ -40,7 +40,7 @@ x0 = [ r0, v0, m0 ]
  
     r(tf) → max
     
-end
+end;
 
 F0(x) = begin
     r, v, m = x
@@ -58,4 +58,4 @@ N = 50
 direct_sol = solve(ocp, grid_size=N)
 
 # Plot
-plot(direct_sol, size=(700, 750))
+plot(direct_sol, size=(700, 700))
